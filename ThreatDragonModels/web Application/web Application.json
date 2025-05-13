@@ -1,0 +1,33 @@
+{
+  "version": "2.4.1",
+  "summary": {
+    "title": "web Application",
+    "owner": "mediabox",
+    "description": "hello",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "eloge"
+      },
+      {
+        "name": "Ramses"
+      }
+    ],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "test modele",
+        "diagramType": "Générique",
+        "placeholder": "New generic diagram description",
+        "thumbnail": "./public/content/images/thumbnail.jpg",
+        "version": "2.4.1",
+        "cells": []
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "dev",
+    "threatTop": 0
+  }
+}
