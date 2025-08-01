@@ -1,0 +1,26 @@
+{
+  "version": "2.4.1",
+  "summary": {
+    "title": " Facturation",
+    "owner": "Greva",
+    "description": "Demande de Facture Proforma Starlink ",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "Dev"
+      },
+      {
+        "name": "Tl"
+      },
+      {
+        "name": "TLA"
+      }
+    ],
+    "diagrams": [],
+    "diagramTop": 0,
+    "reviewer": "Odely",
+    "threatTop": 0
+  }
+}
