@@ -1,9 +1,9 @@
 {
   "version": "2.4.1",
   "summary": {
-    "title": " Facturation",
+    "title": "Facturation Pro Forma - Sécurité STRIDE",
     "owner": "Greva",
-    "description": "Demande de Facture Proforma Starlink ",
+    "description": "Analyse de sécurité STRIDE pour la plateforme de demande de facture pro forma (clients et administrateurs)",
     "id": 0
   },
   "detail": {
@@ -21,12 +21,91 @@
     "diagrams": [
       {
         "id": 1,
-        "title": "Nouveau diagramme STRIDE",
+        "title": "STRIDE - Plateforme Facturation",
         "diagramType": "STRIDE",
-        "placeholder": "New STRIDE diagram description",
+        "placeholder": "Diagramme de flux de données (DFD) et menaces STRIDE associées",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.4.1",
-        "cells": []
+        "cells": [
+          {
+            "type": "tm.Process",
+            "name": "Client",
+            "description": "Soumet une demande de facture pro forma",
+            "outOfScope": false
+          },
+          {
+            "type": "tm.Process",
+            "name": "Employé / Admin",
+            "description": "Gère les demandes et génère les factures",
+            "outOfScope": false
+          },
+          {
+            "type": "tm.Store",
+            "name": "Base de données",
+            "description": "Stocke les demandes et les factures",
+            "outOfScope": false
+          },
+          {
+            "type": "tm.Flow",
+            "name": "Soumission Demande",
+            "source": "Client",
+            "target": "Base de données",
+            "description": "Envoi de la demande via le formulaire",
+            "isEncrypted": true,
+            "protocol": "HTTPS",
+            "threats": [
+              {
+                "id": "threat-spoofing-client",
+                "title": "Accès non autorisé à un compte client",
+                "type": "Spoofing",
+                "severity": "High",
+                "status": "Open",
+                "mitigation": "- Authentification forte (2FA)\n- Jetons de session sécurisés\n- Limite de tentatives",
+                "modelType": "STRIDE"
+              }
+            ]
+          },
+          {
+            "type": "tm.Flow",
+            "name": "Consultation et génération facture",
+            "source": "Employé / Admin",
+            "target": "Base de données",
+            "description": "Accès et traitement des demandes, génération des factures",
+            "isEncrypted": true,
+            "protocol": "SQL/TLS",
+            "threats": [
+              {
+                "id": "threat-tampering-status",
+                "title": "Modification frauduleuse du statut de la demande",
+                "type": "Tampering",
+                "severity": "Medium",
+                "status": "Open",
+                "mitigation": "- Restrictions RBAC\n- Journalisation des actions\n- Intégrité via hachage",
+                "modelType": "STRIDE"
+              }
+            ]
+          },
+          {
+            "type": "tm.Flow",
+            "name": "Envoi facture au client",
+            "source": "Base de données",
+            "target": "Client",
+            "description": "Envoi de la facture générée via email ou interface",
+            "isEncrypted": true,
+            "protocol": "HTTPS",
+            "threats": [
+              {
+                "id": "threat-disclosure-facture",
+                "title": "Divulgation d’informations confidentielles",
+                "type": "Information Disclosure",
+                "severity": "High",
+                "status": "Open",
+                "mitigation": "- Chiffrement des données sensibles\n- Contrôle d’accès strict\n- Session sécurisée",
+                "modelType": "STRIDE"
+              }
+            ]
+          }
+        ]
       }
     ],
     "diagramTop": 2,
